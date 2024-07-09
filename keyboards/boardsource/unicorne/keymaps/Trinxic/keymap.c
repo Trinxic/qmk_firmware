@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 
-
 // ------------------ Tap-Dance ----------------- //
 enum {
     TD_SHFT_CAPS = 0
