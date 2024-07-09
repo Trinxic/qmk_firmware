@@ -1,5 +1,5 @@
-# Note:
-This is a personal fork of the QMK firmware
+### Note:
+*this is a personal fork of the QMK firmware*
 
 # Quantum Mechanical Keyboard Firmware
 
