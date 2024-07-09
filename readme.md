@@ -1,5 +1,5 @@
 ### Note:
-*this is a personal fork of the QMK firmware*
+*this is a [personal fork](https://github.com/Trinxic) of the [QMK firmware](https://github.com/qmk/qmk_firmware)*
 
 # Quantum Mechanical Keyboard Firmware
 
