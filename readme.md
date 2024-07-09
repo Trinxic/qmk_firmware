@@ -1,3 +1,6 @@
+# Note:
+This is a personal fork of the QMK firmware
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
