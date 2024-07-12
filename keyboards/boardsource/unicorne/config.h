@@ -35,9 +35,8 @@
 #define TAPPING_TERM 175
 
 // Split Keyboard Actions
-#define SPLIT_ACTIVITY_ENABLE  // allow timeouts
+#define SPLIT_ACTIVITY_ENABLE  // allow timeouts | not really sure for what rn...
 #define SPLIT_LED_STATE_ENABLE  // caps-lock, num-lock, etc.
 #define SPLIT_MODS_ENABLE  // mod key status
 #define SPLIT_OLED_ENABLE  // oled status (on, off, etc.)
 #define SPLIT_WPM_ENABLE  // words-per-minute
-// #define SPLIT_USSB_DETECT  // not entirely sure yet

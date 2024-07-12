@@ -2,6 +2,21 @@
 
 #include "keycodes.h"
 
+
+// Windows/Linux
+#define W_UNDO LCTL(KC_Z)
+#define W_CUT LCTL(KC_X)
+#define W_COPY LCTL(KC_C)
+#define W_PASTE LCTL(KC_V)
+#define W_BOLD LCTL(KC_B)
+// MacOS
+#define M_UNDO LGUI(KC_Z)
+#define M_CUT LGUI(KC_X)
+#define M_COPY LGUI(KC_C)
+#define M_PASTE LGUI(KC_V)
+#define M_BOLD LGUI(KC_B)
+
+/* Here if I want to redesign..
 // 5 column
 #define __NUM_ROW_L0_5__ KC_0, KC_1, KC_2, KC_3, KC_4
 #define __NUM_ROW_R0_5__ KC_5, KC_6, KC_7, KC_8, KC_9
@@ -27,7 +42,7 @@
 
 #define __SYMBOLS_L1_5__ KC_SCLN, KC_COMA, KC_DOT, KC_ASTR, KC_CIRC
 #define __SYMBOLS_L2_5__ KC_HASH, KC_LPRN, KC_RPRN, KC_SLSH, KC_BSLS
-#define __SYMBOLS_L3_5__ _______, KC_LBRC, KC_RBRC, KC_EXLM, KC_GRV
+#define __SYMBOLS_L3_5__ KC_QUOT, KC_LBRC, KC_RBRC, KC_EXLM, KC_GRV
 #define __SYMBOLS_R1_5__ KC_PLUS, KC_1, KC_2, KC_3, KC_PERC
 #define __SYMBOLS_R2_5__ KC_EQL, KC_4, KC_5, KC_6, KC_0
 #define __SYMBOLS_R3_5__ KC_MINS, KC_7, KC_8, KC_9, KC_DLR
@@ -63,3 +78,4 @@
 #define ____SYMBOLS_R1_6____ __SYMBOLS_R1_5__, TO(_FUNC)
 #define ____SYMBOLS_R2_6____ __SYMBOLS_R2_5__, KC_AT
 #define ____SYMBOLS_R3_6____ __SYMBOLS_R3_5__, _______
+*/

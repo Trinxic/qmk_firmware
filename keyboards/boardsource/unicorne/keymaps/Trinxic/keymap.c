@@ -1,21 +1,15 @@
 #include QMK_KEYBOARD_H
+#include "wrappers.h"
 
-// ------------------ Tap-Dance ----------------- //
-enum {
-    TD_SHFT_CAPS = 0
-};
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_SHFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS)
-};
-// if caps lock is on && is pressed: toggle/turn off caps lock
 
 // ------------------- Layers ------------------- //
 enum layers {  // Layers
     _DVRK,
     _QWRT,
-    _GAME,
     _SYMB,
     _NAV,
+    _GAME,
+    _GNUMS,
     _FUNC,
     _SYS
 };
@@ -57,17 +51,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_LGUI, KC_BSPC, MO(_NAV), MO(_SYMB),  KC_SPC, KC_RALT
                                         //'--------------------------'  '--------------------------'
     ),
-    [_GAME] = LAYOUT_split_3x6_3(
-    //,-----------------------------------------------------,                    ,-----------------------------------------------------,
-         KC_TAB,    KC_T,    KC_Q,    KC_W,    KC_E,    KC_R,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_ENT,
-    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-           KC_G, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
-    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-           KC_B, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-    //'--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------'
-                                           KC_LALT, KC_SPC, MO(_SYMB),   MO(_NAV),  KC_SPC, KC_LGUI
-                                        //'--------------------------'  '--------------------------'
-    ),
     [_SYMB] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------,                    ,-----------------------------------------------------,
          KC_ESC, _______, _______, _______, KC_ASTR, KC_CIRC,                      KC_PLUS,    KC_1,    KC_2,  KC_3, KC_PERC, TO(_FUNC),
@@ -81,13 +64,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_NAV] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------,                    ,-----------------------------------------------------,
-      TO(_FUNC), XXXXXXX, KC_FIND, KC_UNDO, KC_AGIN, XXXXXXX,                      XXXXXXX,  KC_END, KC_PGDN, KC_PGUP, KC_HOME, XXXXXXX,
+      TO(_FUNC), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,  KC_END, KC_PGDN, KC_PGUP, KC_HOME, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        _______, XXXXXXX,  KC_CUT, KC_COPY, KC_PSTE, XXXXXXX,                      XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX,
+        _______,  W_UNDO,   W_CUT,  W_COPY, W_PASTE,  W_BOLD,                      XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______,  M_UNDO,   M_CUT,  M_COPY, M_PASTE,  M_BOLD,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     //'--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------'
                                             KC_LGUI, XXXXXXX, _______,    XXXXXXX, _______, _______
+                                        //'--------------------------'  '--------------------------'
+    ),
+    [_GAME] = LAYOUT_split_3x6_3(
+    //,-----------------------------------------------------,                    ,-----------------------------------------------------,
+         KC_TAB,    KC_T,    KC_Q,    KC_W,    KC_E,    KC_R,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_ENT,
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+           KC_G, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+           KC_B, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+    //'--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------'
+                                          KC_LALT, KC_SPC, MO(_GNUMS),   MO(_NAV),  KC_SPC, KC_LGUI
+                                        //'--------------------------'  '--------------------------'
+    ),
+    [_GNUMS] = LAYOUT_split_3x6_3(  // simply just for nums access for _GAME layer
+    //,-----------------------------------------------------,                    ,-----------------------------------------------------,
+         KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(_FUNC),
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+        XXXXXXX,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    //'--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------'
+                                            XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
                                         //'--------------------------'  '--------------------------'
     ),
     [_FUNC] = LAYOUT_split_3x6_3(
@@ -109,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     RGB_RMOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
     //'--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------'
-                                      TO(_QWRT), TO(_DVRK), TO(_GAME),  TO(_GAME), TO(_DVRK), TO(_QWRT)
+                                       TO(_QWRT), TO(_DVRK), TO(_GAME),  TO(_GAME), TO(_DVRK), TO(_QWRT)
                                         //'--------------------------'  '--------------------------'
     )
 };
@@ -130,47 +135,27 @@ void matrix_scan_user(void) {
         && last_input_activity_elapsed() > 10000  // 10 seconds
     ) {
         layer_move(_DVRK);
-        oled_off();  // not working... now try
+        oled_off();  // not working...
     }
 }
 
-// ------------------- Macros ------------------- //
-// https://docs.qmk.fm/feature_advanced_keycodes#shift-backspace-for-delete
-uint8_t mod_state;
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    mod_state = get_mods();  // Store the current modifier state
-    switch (keycode) {
-        case KC_BSPC: {
-            // Track delete key status: registered or not?
-            static bool delkey_registered;
-            if (record->event.pressed) {
-                // Detect the activation of either shift keys
-                if (mod_state & MOD_MASK_SHIFT) {
-                    // Temporarily canceling both shifts
-                    // so 'shift' isn't applied to KC_DEL
-                    del_mods(MOD_MASK_SHIFT);
-                    register_code(KC_DEL);
-                    // Update the boolean variable to reflect the status of KC_DEL
-                    delkey_registered = true;
-                    // Reapplying modifier state so that the held shift key(s)
-                    // still work even after having tapped the Backspace/Delete key.
-                    set_mods(mod_state);
-                    return false;
-                }
-            } else { // on release of KC_BSPC
-                // In case KC_DEL is still being sent even after the release of KC_BSPC
-                if (delkey_registered) {
-                    unregister_code(KC_DEL);
-                    delkey_registered = false;
-                    return false;
-                }
-            }
-            // Let QMK process the KC_BSPC keycode as usual outside of shift
-            return true;
-        }
-    }
-    return true;
+
+// ------------------- Combos ------------------- //
+const uint16_t PROGMEM LR_shift_to_caps[] = {KC_LSFT, KC_RSFT, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(LR_shift_to_caps, KC_CAPS),
 };
+
+
+// ------------------- Macros ------------------- //
+// uint8_t mod_state;
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     mod_state = get_mods();  // Store the current modifier state
+//     switch (keycode) {
+//     }
+//     return true;
+// };
+
 
 // ---------------- OLED Screens ---------------- //
 #ifdef OLED_ENABLE
@@ -194,12 +179,12 @@ void render_current_layer(void) {
             oled_write_P(PSTR(" DVRK\n"), false); break;
         case _QWRT:
             oled_write_P(PSTR(" QWRT\n"), false); break;
-        case _GAME:
-            oled_write_P(PSTR(" GAME\n"), false); break;
         case _SYMB:
             oled_write_P(PSTR(" SYMB\n"), false); break;
         case _NAV:
             oled_write_P(PSTR(" NAV\n"), false); break;
+        case _GAME:
+            oled_write_P(PSTR(" GAME\n"), false); break;
         case _FUNC:
             oled_write_P(PSTR(" FUNC\n"), false); break;
         case _SYS:
@@ -249,6 +234,8 @@ static void render_windows_logo(void) {
     };
     oled_write_raw_P(raw_windows_logo, sizeof(raw_windows_logo));
 }
+
+static int os_num;
 // Display Current OS on start-up
 bool process_detected_host_os_kb(os_variant_t detected_os) {
     if (!process_detected_host_os_user(detected_os)) {
@@ -260,17 +247,20 @@ bool process_detected_host_os_kb(os_variant_t detected_os) {
             case OS_MACOS:
             case OS_IOS:
                 render_apple_logo();
+                os_num = 1;
                 break;
             case OS_WINDOWS:
                 render_windows_logo();
+                os_num = 2;
                 break;
             case OS_LINUX:
                 render_arch_logo();  // this would be awkward if it's not Arch..
-                                     // I'm not drawing the penguin for this
+                os_num = 0;
                 break;
             case OS_UNSURE:
+            default:
                 oled_write(PSTR("OS: ?"), false);
-                // display some symbol to represent unfamiliar OS
+                os_num = 0;
                 break;
         }
     }
@@ -302,7 +292,6 @@ static const char PROGMEM mod_icons[4][4][64] = {  // 1 = pressed
     }
 };
 
-
 static void render_ctl_shift(int ctl, int shft) {
     oled_write_raw_P(
         mod_icons[0][2*ctl + shft],
@@ -310,28 +299,12 @@ static void render_ctl_shift(int ctl, int shft) {
     );
 }
 
-
 static void render_gui_alt(int gui, int alt) {
-    int os_num;
-    os_variant_t detected_os = detected_host_os();
-    switch (detected_os) {
-        case OS_MACOS:
-        case OS_IOS:
-            os_num = 1;
-            break;
-        case OS_WINDOWS:
-            os_num = 2;
-            break;
-        default:
-            os_num = 0;
-    }
-
     oled_write_raw_P(
         mod_icons[1 + os_num][2*gui + alt],
         sizeof(mod_icons[1 + os_num][2*gui + alt])
     );
 }
-
 
 void render_mod_status(uint8_t mod_status) {
     bool is_caps = host_keyboard_led_state().caps_lock;
@@ -339,13 +312,13 @@ void render_mod_status(uint8_t mod_status) {
     is_caps |= is_caps_word_on();
     #endif
 
-    oled_set_cursor(0, 5);
+    oled_set_cursor(0, 6);
     render_ctl_shift(
         (mod_status & MOD_MASK_CTRL) ? 1 : 0,
         (mod_status & MOD_MASK_SHIFT || is_caps) ? 1 : 0
     );
 
-    oled_set_cursor(0, 7);
+    oled_set_cursor(0, 8);
     render_gui_alt(
         (mod_status & MOD_MASK_GUI) ? 1 : 0,
         (mod_status & MOD_MASK_ALT) ? 1 : 0
@@ -354,7 +327,7 @@ void render_mod_status(uint8_t mod_status) {
 
 // Display Words-per-minute
 int peak_wpm, curr_wpm;
-void render_wpm(void) {
+void render_wpm(void) {  // eventually replace with Luna?
     curr_wpm = get_current_wpm();
 
     // get WPM Peak | reset if wpm is 0
@@ -374,7 +347,7 @@ void render_wpm(void) {
 }
 
 
-void render_caps_lock(void) {
+void render_caps_lock(void) {  // unused
     oled_set_cursor(1, 10);
     oled_write_P(
         host_keyboard_led_state().caps_lock ? PSTR("CAPS") : PSTR("\n"),
@@ -383,22 +356,19 @@ void render_caps_lock(void) {
 }
 
 
-void master_oled(void) {  // Left Side
+void render_master_oled(void) {  // Left Side
     render_current_layer();
-    // render_caps_lock();  // don't need if I have mod key status active
-}
-
-
-void slave_oled(void) {  // Right Side
-    render_current_layer();
-    render_mod_status(get_mods() | get_oneshot_mods());
     render_wpm();
 }
 
+void render_slave_oled(void) {  // Right Side
+    render_current_layer();
+    render_mod_status(get_mods() | get_oneshot_mods());
+}
 
 bool oled_task_user() {
-    if(is_keyboard_master()) master_oled();
-    else slave_oled();
+    if(is_keyboard_master()) render_master_oled();
+    else render_slave_oled();
 
     return false;
 }
