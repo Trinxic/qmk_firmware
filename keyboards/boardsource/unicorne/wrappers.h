@@ -3,8 +3,8 @@
 #include "keycodes.h"
 
 // 5 column
-#define __BASE_L0_5__ KC_0, KC_1, KC_2, KC_3, KC_4
-#define __BASE_R0_5__ KC_5, KC_6, KC_7, KC_8, KC_9
+#define __NUM_ROW_L0_5__ KC_0, KC_1, KC_2, KC_3, KC_4
+#define __NUM_ROW_R0_5__ KC_5, KC_6, KC_7, KC_8, KC_9
 
 #define __DVORAK_L1_5__ KC_SCLN, KC_COMA, KC_DOT, KC_P, KC_Y
 #define __DVORAK_L2_5__ KC_A, KC_O, KC_E, KC_U, KC_I
@@ -34,19 +34,19 @@
 
 
 // 6 column
-#define ____BASE_L0_6____ KC_ESC, __BASE_L0_5__
-#define ____BASE_R0_6____ __BASE_R0_5__, KC_BSPC
+#define ____NUM_ROW_L0_6____ KC_ESC, __NUM_ROW_L0_5__
+#define ____NUM_ROW_R0_6____ __NUM_ROW_R0_5__, KC_BSPC
 
 #define ____DVORAK_L1_6____ KC_TAB, __DVORAK_L1_5__
-#define ____DVORAK_L2_6____ KC_LCTL, __DVORAK_L2_5__
-#define ____DVORAK_L3_6____ KC_LSFT, __DVORAK_L3_5__
+#define ____DVORAK_L2_6____ KC_LSFT, __DVORAK_L2_5__
+#define ____DVORAK_L3_6____ KC_LCTL, __DVORAK_L3_5__
 #define ____DVORAK_R1_6____ __DVORAK_L1_5__, KC_ENT
 #define ____DVORAK_R2_6____ __DVORAK_L2_5__, KC_MINS
 #define ____DVORAK_R3_6____ __DVORAK_L3_5__, KC_RSFT
 
 #define ____QWERTY_L1_6____ KC_TAB, __QWERTY_L1_5__
-#define ____QWERTY_L2_6____ KC_LCTL, __QWERTY_L2_5__
-#define ____QWERTY_L3_6____ KC_LSFT, __QWERTY_L3_5__
+#define ____QWERTY_L2_6____ KC_LSFT, __QWERTY_L2_5__
+#define ____QWERTY_L3_6____ KC_LCTL, __QWERTY_L3_5__
 #define ____QWERTY_R1_6____ __QWERTY_L1_5__, KC_ENT
 #define ____QWERTY_R2_6____ __QWERTY_L2_5__, KC_MINS
 #define ____QWERTY_R3_6____ __QWERTY_L3_5__, KC_RSFT
@@ -55,11 +55,11 @@
 #define ____GAME_L2_6____ KC_G, __GAME_L2_5__
 #define ____GAME_L3_6____ KC_B, __GAME_L3_5__
 
-#define ____SYMBOLS_L1_6____ _______, _______, _______, _______, _______, _______,
+#define ____SYMBOLS_L0_6____ _______, _______, _______, _______, _______, _______,
 #define ____SYMBOLS_L1_6____ KC_ESC, __SYMBOLS_L1_5__
-#define ____SYMBOLS_L1_6____ _______, __SYMBOLS_L2_5__
-#define ____SYMBOLS_L1_6____ _______, __SYMBOLS_L3_5__
-#define ____SYMBOLS_R1_6____ _______, _______, _______, _______, _______, _______,
+#define ____SYMBOLS_L2_6____ _______, __SYMBOLS_L2_5__
+#define ____SYMBOLS_L3_6____ _______, __SYMBOLS_L3_5__
+#define ____SYMBOLS_R0_6____ _______, _______, _______, _______, _______, _______,
 #define ____SYMBOLS_R1_6____ __SYMBOLS_R1_5__, TO(_FUNC)
-#define ____SYMBOLS_R1_6____ __SYMBOLS_R2_5__, KC_AT
-#define ____SYMBOLS_R1_6____ __SYMBOLS_R3_5__, _______
+#define ____SYMBOLS_R2_6____ __SYMBOLS_R2_5__, KC_AT
+#define ____SYMBOLS_R3_6____ __SYMBOLS_R3_5__, _______

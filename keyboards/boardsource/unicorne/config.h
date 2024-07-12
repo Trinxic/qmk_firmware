@@ -40,3 +40,4 @@
 #define SPLIT_MODS_ENABLE  // mod key status
 #define SPLIT_OLED_ENABLE  // oled status (on, off, etc.)
 #define SPLIT_WPM_ENABLE  // words-per-minute
+// #define SPLIT_USSB_DETECT  // not entirely sure yet
