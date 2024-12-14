@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         _______, _______, KC_LBRC, KC_RBRC, KC_EXLM,  KC_GRV,                      KC_MINS,    KC_7,    KC_8,    KC_9,  KC_DLR, _______,
     //'--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------'
-                                            _______, _______, XXXXXXX,  _______, _______, _______
+                                           _______, _______, MO(_NAV),    XXXXXXX, _______, _______
                                         //'--------------------------'  '--------------------------'
     ),
     [_NAV] = LAYOUT_split_3x6_3(
@@ -70,23 +70,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         _______,  M_UNDO,   M_CUT,  M_COPY, M_PASTE,  M_BOLD,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     //'--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------'
-                                            KC_LGUI, XXXXXXX, _______,    XXXXXXX, _______, _______
+                                            KC_LGUI, XXXXXXX, XXXXXXX,  MO(_SYMB), _______, _______
                                         //'--------------------------'  '--------------------------'
     ),
     [_GAME] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------,                    ,-----------------------------------------------------,
-         KC_TAB,    KC_T,    KC_Q,    KC_W,    KC_E,    KC_R,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_ENT,
+           KC_T,  KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_ENT,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
            KC_G, KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
            KC_B, KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
     //'--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------'
-                                          KC_LALT, KC_SPC, MO(_GNUMS),   MO(_NAV),  KC_SPC, KC_LGUI
+                                          KC_LALT, KC_SPC, MO(_GNUMS),   MO(_SYMB), TO(_DVRK), KC_LGUI
                                         //'--------------------------'  '--------------------------'
     ),
     [_GNUMS] = LAYOUT_split_3x6_3(  // simply just for nums access for _GAME layer
     //,-----------------------------------------------------,                    ,-----------------------------------------------------,
-         KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(_FUNC),
+         KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(_FUNC),
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         XXXXXXX,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FUNC] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------,                    ,-----------------------------------------------------,
-         KC_ESC,   KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,                      KC_VOLU, KC_MNXT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+         KC_ESC,   KC_F1,   KC_F2,  KC_F3,  KC_F4, TO(_GAME),                      KC_VOLU, KC_MNXT, TO(_GAME),XXXXXXX,XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_LSFT,   KC_F5,   KC_F6,   KC_F7,   KC_F8, XXXXXXX,                      KC_MUTE, KC_MPLY, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -214,13 +214,15 @@ void render_current_layer(void) {
         case _SYMB:
             oled_write_P(PSTR(" SYMB\n"), false); break;
         case _NAV:
-            oled_write_P(PSTR(" NAV\n"), false); break;
+            oled_write_P(PSTR(" NAV \n"), false); break;
         case _GAME:
             oled_write_P(PSTR(" GAME\n"), false); break;
+        case _GNUMS:
+            oled_write_P(PSTR(" GAME\n"), false); break;
         case _FUNC:
-            oled_write_P(PSTR(" FUNC\n"), false); break;
+            oled_write_P(PSTR("GNUMS\n"), false); break;
         case _SYS:
-            oled_write_P(PSTR(" SYS\n"), false); break;
+            oled_write_P(PSTR(" SYS \n"), false); break;
         default:
             oled_write_P(PSTR("ERROR\n"), false); break;
     }
