@@ -2,13 +2,15 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #pragma once
 
-// Board:
+// Ability to x2-tap 'Reset' to enter bootloader
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 
+// (not sure)
 #define I2C_DRIVER I2CD1
 #define I2C1_SDA_PIN GP22
 #define I2C1_SCL_PIN GP23
 
+// Define Master/Slave Sides
 #define MASTER_LEFT
 
 // Audio Buzzer:
@@ -18,13 +20,13 @@
 #define AUDIO_PWM_CHANNEL RP2040_PWM_CHANNEL_A
 // #define STARTUP_SONG SONG(ODE_TO_JOY)  // AHHHHHHHHH
 
-// Analog Sticks:
+// Analog Sticks: ! I don't have joysticks !
 #define ANALOG_JOYSTICK_Y_AXIS_PIN GP26
 #define ANALOG_JOYSTICK_X_AXIS_PIN GP27
 #define POINTING_DEVICE_INVERT_Y
 #define POINTING_DEVICE_INVERT_X
 
-// Reset Upon Reinitializtion:
+// Reset OS Detection Upon Reinitializtion:
 #define OS_DETECTION_KEYBOARD_RESET  // enables the keyboard reset upon a USB device reinitialization,
                                      // such as switching devices on some KVMs
 // OLEDs:
@@ -35,9 +37,11 @@
 #define TAPPING_TERM 175
 
 // Split Keyboard Actions
-#define SPLIT_ACTIVITY_ENABLE  // allow timeouts | not really sure for what rn...
+#define SPLIT_ACTIVITY_ENABLE  // allow timeouts
 #define SPLIT_LED_STATE_ENABLE  // caps-lock, num-lock, etc.
 #define SPLIT_MODS_ENABLE  // mod key status
 #define SPLIT_OLED_ENABLE  // oled status (on, off, etc.)
 #define SPLIT_WPM_ENABLE  // words-per-minute
-#undef SPLIT_USB_DETECT  // hopefully allow keyboard to turn on with cold-boot of PC
+
+// Allow keyboard to turn on at PC cold-boot
+#define SPLIT_USB_TIMEOUT 30000

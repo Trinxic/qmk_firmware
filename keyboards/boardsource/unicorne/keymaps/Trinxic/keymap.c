@@ -218,9 +218,9 @@ void render_current_layer(void) {
         case _GAME:
             oled_write_P(PSTR(" GAME\n"), false); break;
         case _GNUMS:
-            oled_write_P(PSTR(" GAME\n"), false); break;
-        case _FUNC:
             oled_write_P(PSTR("GNUMS\n"), false); break;
+        case _FUNC:
+            oled_write_P(PSTR(" FUNC\n"), false); break;
         case _SYS:
             oled_write_P(PSTR(" SYS \n"), false); break;
         default:
