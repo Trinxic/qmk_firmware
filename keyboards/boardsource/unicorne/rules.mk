@@ -1,2 +1,8 @@
+AUDIO_DRIVER = pwm_hardware
+BOOTLOADER = rp2040
+COMBO_ENABLE = yes
+LTO_ENABLE = yes
+OS_DETECTION_ENABLE = yes
 POINTING_DEVICE_DRIVER = analog_joystick
 SRC += lib/oled.c
+WPM_ENABLE = yes
