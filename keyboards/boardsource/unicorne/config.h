@@ -26,7 +26,7 @@
 #define POINTING_DEVICE_INVERT_X
 
 // Reset OS Detection Upon Reinitialization
-#define OS_DETECTION_KEYBOARD_RESET
+// #define OS_DETECTION_KEYBOARD_RESET
 
 // OLED
 #define OLED_BRIGHTNESS 200 // 0-255
