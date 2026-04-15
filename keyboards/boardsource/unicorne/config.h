@@ -11,6 +11,7 @@
 
 // Define Master/Slave Sides
 #define MASTER_LEFT
+// #define MASTER_RIGHT
 
 // Audio Buzzer
 #define AUDIO_PIN GP28
@@ -34,6 +35,10 @@
 
 // Tap Dance
 #define TAPPING_TERM 175 // milliseconds
+
+// Combos
+#define COMBO_TERM 20 // milliseconds
+#define BOTH_SHIFTS_TURNS_ON_CAPSLOCK
 
 // Split Keyboard Actions
 #define SPLIT_ACTIVITY_ENABLE  // allow timeouts
